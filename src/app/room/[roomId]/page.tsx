@@ -49,6 +49,7 @@ export default function RoomPage() {
     onExistingUsers: useCallback(
       (userIds: string[]) => {
         console.log('Existing users in room:', userIds);
+        // New peer initiates connections to all existing peers
         userIds.forEach((userId) => {
           createOffer(userId);
         });
@@ -58,9 +59,11 @@ export default function RoomPage() {
     onUserJoined: useCallback(
       (userId: string) => {
         console.log('User joined:', userId);
-        createOffer(userId);
+        // Don't create offer here - the new peer will send us an offer
+        // via onExistingUsers. This prevents a race condition where
+        // both peers simultaneously create offers.
       },
-      [createOffer]
+      []
     ),
     onUserLeft: useCallback(
       (userId: string) => {

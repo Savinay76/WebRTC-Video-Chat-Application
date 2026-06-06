@@ -25,7 +25,19 @@ export default function LocalVideo({ stream, isCameraOff }: LocalVideoProps) {
         aspectRatio: '16/10',
       }}
     >
-      {isCameraOff ? (
+      <video
+        ref={videoRef}
+        data-test-id="local-video"
+        autoPlay
+        playsInline
+        muted
+        className="w-full h-full object-cover"
+        style={{
+          transform: 'scaleX(-1)',
+          display: isCameraOff ? 'none' : 'block',
+        }}
+      />
+      {isCameraOff && (
         <div
           className="w-full h-full flex items-center justify-center"
           style={{ background: 'var(--bg-secondary)' }}
@@ -35,16 +47,6 @@ export default function LocalVideo({ stream, isCameraOff }: LocalVideoProps) {
             <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Camera Off</p>
           </div>
         </div>
-      ) : (
-        <video
-          ref={videoRef}
-          data-test-id="local-video"
-          autoPlay
-          playsInline
-          muted
-          className="w-full h-full object-cover"
-          style={{ transform: 'scaleX(-1)' }}
-        />
       )}
       <div className="absolute bottom-2 left-2 glass px-2 py-1 rounded-md">
         <span className="text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>You</span>
