@@ -9,17 +9,23 @@ interface StatusIndicatorProps {
 
 export default function StatusIndicator({ status, peerCount }: StatusIndicatorProps) {
   return (
-    <div className="absolute top-4 left-4 z-30">
+    <div className="absolute top-5 left-5 z-30">
       {status === 'waiting' && (
         <div
           data-test-id="status-waiting"
-          className="glass rounded-full px-4 py-2 flex items-center gap-2 animate-fadeIn"
+          className="glass rounded-full flex items-center gap-2.5 animate-fadeIn"
+          style={{ padding: '0.55rem 1.1rem' }}
         >
           <span
-            className="w-2 h-2 rounded-full"
-            style={{ background: 'var(--warning)', boxShadow: '0 0 8px var(--warning)' }}
+            className="rounded-full"
+            style={{
+              width: '0.55rem',
+              height: '0.55rem',
+              background: 'var(--warning)',
+              boxShadow: '0 0 10px var(--warning)',
+            }}
           />
-          <span className="text-xs font-medium" style={{ color: 'var(--warning)' }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--warning)' }}>
             Waiting for others...
           </span>
         </div>
@@ -28,13 +34,19 @@ export default function StatusIndicator({ status, peerCount }: StatusIndicatorPr
       {status === 'connecting' && (
         <div
           data-test-id="status-connecting"
-          className="glass rounded-full px-4 py-2 flex items-center gap-2 animate-fadeIn"
+          className="glass rounded-full flex items-center gap-2.5 animate-fadeIn"
+          style={{ padding: '0.55rem 1.1rem' }}
         >
           <span
-            className="w-2 h-2 rounded-full animate-pulse"
-            style={{ background: 'var(--accent-secondary)', boxShadow: '0 0 8px var(--accent-secondary)' }}
+            className="rounded-full animate-pulse"
+            style={{
+              width: '0.55rem',
+              height: '0.55rem',
+              background: 'var(--accent-secondary)',
+              boxShadow: '0 0 10px var(--accent-secondary)',
+            }}
           />
-          <span className="text-xs font-medium" style={{ color: 'var(--accent-secondary)' }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--accent-secondary)' }}>
             Connecting...
           </span>
         </div>
@@ -43,13 +55,19 @@ export default function StatusIndicator({ status, peerCount }: StatusIndicatorPr
       {status === 'connected' && (
         <div
           data-test-id="status-connected"
-          className="glass rounded-full px-4 py-2 flex items-center gap-2 animate-fadeIn"
+          className="glass rounded-full flex items-center gap-2.5 animate-fadeIn"
+          style={{ padding: '0.55rem 1.1rem' }}
         >
           <span
-            className="w-2 h-2 rounded-full"
-            style={{ background: 'var(--success)', boxShadow: '0 0 8px var(--success)' }}
+            className="rounded-full"
+            style={{
+              width: '0.55rem',
+              height: '0.55rem',
+              background: 'var(--success)',
+              boxShadow: '0 0 10px var(--success)',
+            }}
           />
-          <span className="text-xs font-medium" style={{ color: 'var(--success)' }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--success)' }}>
             Connected · {peerCount} peer{peerCount !== 1 ? 's' : ''}
           </span>
         </div>

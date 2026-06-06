@@ -18,10 +18,11 @@ export default function LocalVideo({ stream, isCameraOff }: LocalVideoProps) {
 
   return (
     <div
-      className="absolute bottom-28 right-6 w-52 rounded-2xl overflow-hidden shadow-2xl z-20 animate-fadeInScale transition-all duration-300 hover:scale-105"
+      className="absolute bottom-28 right-6 rounded-2xl overflow-hidden z-20 animate-fadeInScale transition-all duration-300 hover:scale-105"
       style={{
-        border: '2px solid var(--border-glass)',
-        boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+        width: '260px',
+        border: '2px solid rgba(255,255,255,0.1)',
+        boxShadow: '0 12px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)',
         aspectRatio: '16/10',
       }}
     >
@@ -43,13 +44,17 @@ export default function LocalVideo({ stream, isCameraOff }: LocalVideoProps) {
           style={{ background: 'var(--bg-secondary)' }}
         >
           <div className="text-center">
-            <div className="text-3xl mb-2">📷</div>
-            <p className="text-xs" style={{ color: 'var(--text-secondary)' }}>Camera Off</p>
+            <div style={{ fontSize: '2.25rem', marginBottom: '0.5rem' }}>📷</div>
+            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Camera Off</p>
           </div>
         </div>
       )}
-      <div className="absolute bottom-2 left-2 glass px-2 py-1 rounded-md">
-        <span className="text-[10px] font-medium" style={{ color: 'var(--text-secondary)' }}>You</span>
+      {/* Label */}
+      <div
+        className="absolute bottom-2.5 left-2.5 glass px-2.5 py-1 rounded-lg"
+        style={{ backdropFilter: 'blur(12px)' }}
+      >
+        <span style={{ fontSize: '0.65rem', fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>You</span>
       </div>
     </div>
   );

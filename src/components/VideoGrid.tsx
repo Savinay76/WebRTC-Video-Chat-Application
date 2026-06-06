@@ -16,17 +16,39 @@ function RemoteVideo({ stream, peerId }: { stream: MediaStream; peerId: string }
   }, [stream]);
 
   return (
-    <div className="relative rounded-2xl overflow-hidden animate-fadeInScale" style={{ background: 'var(--bg-secondary)', aspectRatio: '16/9' }}>
+    <div
+      className="relative rounded-2xl overflow-hidden animate-fadeInScale"
+      style={{
+        background: 'var(--bg-secondary)',
+        aspectRatio: '16/9',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+        border: '1px solid rgba(255,255,255,0.05)',
+      }}
+    >
       <video
         ref={videoRef}
         autoPlay
         playsInline
         className="w-full h-full object-cover"
       />
-      <div className="absolute bottom-3 left-3 glass px-3 py-1.5 rounded-lg">
-        <span className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>
-          Peer {peerId.slice(0, 6)}
+      {/* Peer label */}
+      <div
+        className="absolute bottom-3 left-3 glass px-3 py-1.5 rounded-lg"
+        style={{ backdropFilter: 'blur(12px)' }}
+      >
+        <span className="text-xs font-semibold" style={{ color: 'rgba(255,255,255,0.8)' }}>
+          👤 Peer {peerId.slice(0, 6)}
         </span>
+      </div>
+      {/* Connection quality indicator */}
+      <div className="absolute top-3 right-3">
+        <div
+          className="w-2.5 h-2.5 rounded-full"
+          style={{
+            background: 'var(--success)',
+            boxShadow: '0 0 8px var(--success)',
+          }}
+        />
       </div>
     </div>
   );
@@ -44,8 +66,11 @@ export default function VideoGrid({ remoteStreams }: VideoGridProps) {
   return (
     <div
       data-test-id="remote-video-container"
-      className={`grid gap-4 w-full h-full p-4 ${gridClass}`}
-      style={{ alignContent: 'center' }}
+      className={`grid gap-5 w-full h-full ${gridClass}`}
+      style={{
+        alignContent: 'center',
+        padding: '1.5rem 2rem',
+      }}
     >
       {Array.from(remoteStreams.entries()).map(([peerId, stream]) => (
         <RemoteVideo key={peerId} stream={stream} peerId={peerId} />
@@ -53,11 +78,33 @@ export default function VideoGrid({ remoteStreams }: VideoGridProps) {
 
       {count === 0 && (
         <div className="flex flex-col items-center justify-center h-full animate-fadeIn">
-          <div className="text-6xl mb-6 animate-float">🎥</div>
-          <p className="text-xl font-medium" style={{ color: 'var(--text-secondary)' }}>
+          <div
+            className="animate-float"
+            style={{
+              fontSize: '5rem',
+              marginBottom: '1.5rem',
+              filter: 'drop-shadow(0 4px 20px rgba(108,92,231,0.3))',
+            }}
+          >
+            🎥
+          </div>
+          <p
+            className="font-semibold"
+            style={{
+              color: 'var(--text-primary)',
+              fontSize: '1.35rem',
+              marginBottom: '0.5rem',
+            }}
+          >
             Waiting for others to join...
           </p>
-          <p className="text-sm mt-2" style={{ color: 'var(--text-secondary)', opacity: 0.6 }}>
+          <p
+            style={{
+              color: 'var(--text-secondary)',
+              fontSize: '0.9rem',
+              opacity: 0.7,
+            }}
+          >
             Share the room link to invite participants
           </p>
         </div>

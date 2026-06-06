@@ -20,94 +20,226 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: 'var(--bg-primary)' }}>
-      {/* Ambient background effects */}
+    <div
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      style={{ background: 'var(--bg-primary)' }}
+    >
+      {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full opacity-20 animate-gradient"
-          style={{ background: 'radial-gradient(circle, #6c5ce7 0%, transparent 70%)' }}
+          className="absolute rounded-full animate-gradient"
+          style={{
+            top: '-15%',
+            left: '-5%',
+            width: '700px',
+            height: '700px',
+            background: 'radial-gradient(circle, rgba(108,92,231,0.25) 0%, transparent 65%)',
+            filter: 'blur(40px)',
+          }}
         />
         <div
-          className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full opacity-15 animate-gradient"
-          style={{ background: 'radial-gradient(circle, #a29bfe 0%, transparent 70%)', animationDelay: '1.5s' }}
+          className="absolute rounded-full animate-gradient"
+          style={{
+            bottom: '-15%',
+            right: '-5%',
+            width: '600px',
+            height: '600px',
+            background: 'radial-gradient(circle, rgba(162,155,254,0.2) 0%, transparent 65%)',
+            filter: 'blur(40px)',
+            animationDelay: '1.5s',
+          }}
         />
         <div
-          className="absolute top-[40%] right-[20%] w-[300px] h-[300px] rounded-full opacity-10 animate-float"
-          style={{ background: 'radial-gradient(circle, #fd79a8 0%, transparent 70%)' }}
+          className="absolute rounded-full animate-float"
+          style={{
+            top: '35%',
+            right: '15%',
+            width: '400px',
+            height: '400px',
+            background: 'radial-gradient(circle, rgba(253,121,168,0.12) 0%, transparent 65%)',
+            filter: 'blur(30px)',
+          }}
+        />
+        {/* Grid pattern overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
         />
       </div>
 
       {/* Main card */}
-      <div className="glass-strong rounded-3xl p-10 max-w-md w-full mx-4 animate-fadeInScale relative z-10" style={{ boxShadow: '0 25px 60px rgba(0,0,0,0.5)' }}>
+      <div
+        className="glass-strong rounded-3xl max-w-lg w-full mx-6 animate-fadeInScale relative z-10"
+        style={{
+          boxShadow: '0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
+          padding: '3.5rem 3rem',
+        }}
+      >
         {/* Logo & title */}
-        <div className="text-center mb-10">
+        <div className="text-center" style={{ marginBottom: '2.5rem' }}>
           <div
-            className="w-20 h-20 rounded-2xl mx-auto mb-6 flex items-center justify-center text-3xl animate-gradient"
-            style={{ background: 'var(--accent-gradient)' }}
+            className="mx-auto flex items-center justify-center animate-gradient"
+            style={{
+              width: '5.5rem',
+              height: '5.5rem',
+              borderRadius: '1.25rem',
+              background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)',
+              fontSize: '2.5rem',
+              marginBottom: '1.75rem',
+              boxShadow: '0 8px 30px rgba(108,92,231,0.4)',
+            }}
           >
             📹
           </div>
-          <h1 className="text-4xl font-bold mb-3" style={{ background: 'var(--accent-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+          <h1
+            className="font-extrabold"
+            style={{
+              fontSize: '3rem',
+              lineHeight: '1.1',
+              background: 'linear-gradient(135deg, #6c5ce7, #a29bfe, #d4a5ff)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              marginBottom: '0.75rem',
+              letterSpacing: '-0.02em',
+            }}
+          >
             MeshCall
           </h1>
-          <p style={{ color: 'var(--text-secondary)' }} className="text-base">
-            Peer-to-peer video chat with WebRTC mesh topology
+          <p
+            style={{
+              color: 'var(--text-secondary)',
+              fontSize: '1.05rem',
+              lineHeight: '1.5',
+              maxWidth: '320px',
+              margin: '0 auto',
+            }}
+          >
+            Peer-to-peer video chat powered by WebRTC mesh topology
           </p>
         </div>
 
-        {/* Create room */}
+        {/* Create room button */}
         <button
           onClick={createRoom}
-          className="w-full py-4 rounded-xl text-white font-semibold text-lg mb-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] cursor-pointer animate-gradient"
-          style={{ background: 'var(--accent-gradient)', boxShadow: '0 4px 20px rgba(108, 92, 231, 0.4)' }}
+          className="w-full font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] cursor-pointer animate-gradient"
+          style={{
+            padding: '1.1rem 2rem',
+            borderRadius: '0.875rem',
+            background: 'linear-gradient(135deg, #6c5ce7, #a29bfe)',
+            color: '#fff',
+            fontSize: '1.15rem',
+            boxShadow: '0 6px 30px rgba(108, 92, 231, 0.45)',
+            border: 'none',
+            marginBottom: '2rem',
+            letterSpacing: '0.01em',
+          }}
           id="create-room-btn"
         >
           ✨ Create New Room
         </button>
 
         {/* Divider */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="flex-1 h-px" style={{ background: 'var(--border-glass)' }} />
-          <span style={{ color: 'var(--text-secondary)' }} className="text-sm font-medium">or join existing</span>
-          <div className="flex-1 h-px" style={{ background: 'var(--border-glass)' }} />
+        <div className="flex items-center gap-4" style={{ marginBottom: '1.5rem' }}>
+          <div className="flex-1" style={{ height: '1px', background: 'rgba(255,255,255,0.08)' }} />
+          <span
+            style={{
+              color: 'var(--text-secondary)',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+            }}
+          >
+            or join existing
+          </span>
+          <div className="flex-1" style={{ height: '1px', background: 'rgba(255,255,255,0.08)' }} />
         </div>
 
         {/* Join room */}
         <div className="flex gap-3">
           <input
             type="text"
-            placeholder="Enter room ID..."
+            placeholder="Paste room ID here..."
             value={joinRoomId}
             onChange={(e) => setJoinRoomId(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && joinRoom()}
-            className="flex-1 px-5 py-3.5 rounded-xl bg-transparent text-white placeholder:text-gray-500 outline-none transition-all duration-300 focus:border-[var(--accent-primary)]"
-            style={{ border: '1px solid var(--border-glass)', background: 'rgba(255,255,255,0.03)' }}
+            className="flex-1 outline-none transition-all duration-300"
+            style={{
+              padding: '0.95rem 1.25rem',
+              borderRadius: '0.875rem',
+              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(255,255,255,0.04)',
+              color: '#fff',
+              fontSize: '0.95rem',
+            }}
             id="join-room-input"
           />
           <button
             onClick={joinRoom}
             disabled={!joinRoomId.trim()}
-            className="px-6 py-3.5 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-            style={{ background: 'var(--bg-tertiary)', border: '1px solid var(--border-glass)', color: 'var(--accent-secondary)' }}
+            className="font-semibold transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+            style={{
+              padding: '0.95rem 1.75rem',
+              borderRadius: '0.875rem',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              color: 'var(--accent-secondary)',
+              fontSize: '0.95rem',
+            }}
             id="join-room-btn"
           >
-            Join
+            Join →
           </button>
         </div>
 
-        {/* Features */}
-        <div className="mt-10 grid grid-cols-3 gap-4 text-center">
+        {/* Feature cards */}
+        <div
+          className="grid grid-cols-3 gap-3 text-center"
+          style={{ marginTop: '2.5rem' }}
+        >
           {[
-            { icon: '🔒', label: 'P2P Encrypted' },
-            { icon: '👥', label: 'Up to 4 Peers' },
-            { icon: '💬', label: 'Text Chat' },
+            { icon: '🔒', label: 'P2P Encrypted', sub: 'Direct connection' },
+            { icon: '👥', label: 'Up to 4 Peers', sub: 'Mesh topology' },
+            { icon: '💬', label: 'Text Chat', sub: 'Real-time messages' },
           ].map((feat) => (
-            <div key={feat.label} className="py-3 px-2 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)' }}>
-              <div className="text-xl mb-1">{feat.icon}</div>
-              <div className="text-xs" style={{ color: 'var(--text-secondary)' }}>{feat.label}</div>
+            <div
+              key={feat.label}
+              className="rounded-xl transition-all duration-300 hover:scale-105"
+              style={{
+                padding: '1.1rem 0.75rem',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.04)',
+              }}
+            >
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{feat.icon}</div>
+              <div
+                style={{
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  color: 'var(--text-primary)',
+                  marginBottom: '0.2rem',
+                }}
+              >
+                {feat.label}
+              </div>
+              <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', opacity: 0.7 }}>
+                {feat.sub}
+              </div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer tagline */}
+      <div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center"
+        style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', opacity: 0.5 }}
+      >
+        Built with Next.js · WebRTC · Socket.IO
       </div>
     </div>
   );
